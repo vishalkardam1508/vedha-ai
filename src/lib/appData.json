@@ -1,0 +1,45 @@
+{
+  "users": [
+    { "username": "user1", "password": "Test@123", "interviewId": "frontend" },
+    { "username": "user2", "password": "Test@345", "interviewId": "python" },
+    { "username": "user3", "password": "Test@567", "interviewId": "nodejs" }
+  ],
+  "interviews": [
+    {
+      "id": "frontend",
+      "title": "Senior Frontend Engineer",
+      "subtitle": "Technical Interview",
+      "questions": [
+        "Tell me about yourself and your professional background. What makes you a strong candidate for this role?",
+        "Describe the most challenging project you've worked on. How did you approach it and what was the outcome?",
+        "What are your strongest technical skills and how have you applied them in real-world scenarios?",
+        "How do you handle tight deadlines and competing priorities? Give a specific example.",
+        "Where do you see yourself professionally in the next 3–5 years, and how does this role align with those goals?"
+      ]
+    },
+    {
+      "id": "python",
+      "title": "Python Developer",
+      "subtitle": "Technical Interview",
+      "questions": [
+        "Tell me about yourself and your professional background as a Python developer. What makes you a strong candidate for this role?",
+        "Describe the most challenging Python project you've worked on. How did you approach it and what was the outcome?",
+        "How do you handle memory management and performance optimization in Python applications?",
+        "Walk me through how you would design a REST API using a framework like Django or FastAPI.",
+        "Where do you see yourself professionally in the next 3–5 years, and how does this role align with those goals?"
+      ]
+    },
+    {
+      "id": "nodejs",
+      "title": "Node.js Developer",
+      "subtitle": "Technical Interview",
+      "questions": [
+        "Tell me about yourself and your professional background as a Node.js developer. What makes you a strong candidate for this role?",
+        "Describe the most challenging Node.js project you've worked on. How did you approach it and what was the outcome?",
+        "How do you handle asynchronous operations and the event loop in Node.js? Give a practical example.",
+        "Walk me through how you would design and scale a REST API or microservice using Express or a similar framework.",
+        "Where do you see yourself professionally in the next 3–5 years, and how does this role align with those goals?"
+      ]
+    }
+  ]
+}
