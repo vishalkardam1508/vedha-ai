@@ -1,4 +1,20 @@
-# AI Interview Platform v2
+<div align="center">
+
+# 🎙️Vedha AI Interview Platform
+
+**Proctored video interviews with per-question recording and voice-to-text answers.**
+
+![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![WebRTC](https://img.shields.io/badge/Media-MediaRecorder%20%7C%20Web%20Speech-FF6B35)
+
+<a href="https://buymeacoffee.com/vishalkardan1508" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
+</a>
+
+</div>
+
+---
 
 ## Quick Start
 
@@ -101,7 +117,7 @@ src/
 ## Browser Requirements
 
 | Feature | Chrome | Edge | Firefox | Safari |
-|---|---|---|---|--------|
+|---|---|---|---|---|
 | Screen capture | ✅ | ✅ | ✅ | ✅ |
 | System audio | ✅ | ✅ | ❌ | ❌ |
 | Speech recognition | ✅ | ✅ | ❌ | partial |
@@ -116,3 +132,17 @@ src/
 1. `getDisplayMedia({ video, audio: true })` — screen + system audio (user picks entire screen)
 2. `getUserMedia({ video: true })` — webcam only
 3. `getUserMedia({ audio: true })` — microphone only
+
+---
+
+## 👨‍💻 Creator
+
+**Vishal Kardam**, creator and developer of AI Interview Platform.
+
+- GitHub: [@vishalkardam1508](https://github.com/vishalkardam1508)
+
+If this project helps you, consider supporting it:
+
+<a href="https://buymeacoffee.com/vishalkardan1508" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
+</a>
