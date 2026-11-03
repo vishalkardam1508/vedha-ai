@@ -135,6 +135,93 @@ src/
 
 ---
 
+<h1 align="center">📞 Duo Meet</h1>
+<p align="center"><b>Call Workflow</b></p>
+
+<p align="center">
+🟦 WebSocket &nbsp;·&nbsp; 🟨 Through the server &nbsp;·&nbsp; 🟩 Direct, browser to browser &nbsp;·&nbsp; 🟪 Decision &nbsp;·&nbsp; 🟥 Problem shown to the user
+</p>
+
+---
+
+## 1. WebSocket connection
+
+How each browser stays connected to the server.
+
+```mermaid
+flowchart TD
+  S([START]):::start --> A["Browser runs new WebSocket(url)"]:::ws
+  A --> B["Server accepts, connection stays open"]:::ws
+  B --> C["Send join with the meeting code"]:::ws
+  C --> D["Messages flow both ways, anytime"]:::ws
+  D --> E{"Still connected?"}:::decision
+  E -->|"✅ YES"| D
+  E -->|"❌ NO"| F{"User left the page?"}:::decision
+  F -->|"✅ YES"| X([END]):::finish
+  F -->|"❌ NO"| G["Wait a moment, then reconnect"]:::warn
+  G --> A
+
+  classDef start fill:#1D63ED,stroke:#174FC0,stroke-width:2px,color:#FFFFFF
+  classDef finish fill:#DC2626,stroke:#B91C1C,stroke-width:2px,color:#FFFFFF
+  classDef ws fill:#EFF6FF,stroke:#3B82F6,stroke-width:2px,color:#0F172A
+  classDef decision fill:#F5F3FF,stroke:#7C3AED,stroke-width:2px,color:#0F172A
+  classDef warn fill:#FEF2F2,stroke:#EF4444,stroke-width:2px,color:#0F172A
+  linkStyle default stroke:#5B6B86,stroke-width:2px,stroke-dasharray:9 5,stroke-dashoffset:980,animation:dash 25s linear infinite
+```
+
+---
+
+## 2. Meeting call
+
+From creating a meeting to hanging up, for either person.
+
+```mermaid
+flowchart TD
+  S([START]):::start --> A["Click New meeting"]:::process
+  A --> B["Server creates a code: abc‑defg‑hij"]:::setup
+  B --> C["Allow camera and microphone"]:::process
+  C --> D{"Access allowed?"}:::decision
+  D -->|"❌ NO"| D1["Show how to allow access"]:::warn
+  D1 --> C
+  D -->|"✅ YES"| E["Connect WebSocket and send the code"]:::ws
+  E --> F{"Meeting full?"}:::decision
+  F -->|"✅ YES"| F1["Show: Meeting is full"]:::warn
+  F1 --> X1([END]):::finish
+  F -->|"❌ NO"| G{"Someone waiting?"}:::decision
+  G -->|"❌ NO"| H["Wait for someone to join"]:::ws
+  H --> I["Server says: peer‑joined"]:::ws
+  I --> J["Create the offer, send through server"]:::setup
+  G -->|"✅ YES"| K["Receive the offer, send the answer"]:::setup
+  J --> L["Exchange addresses through server"]:::setup
+  K --> L
+  L --> M{"Direct path works?"}:::decision
+  M -->|"✅ YES"| N["Connected directly"]:::direct
+  M -->|"❌ NO"| O{"TURN relay set up?"}:::decision
+  O -->|"✅ YES"| P["Connect through the relay"]:::direct
+  O -->|"❌ NO"| Q["Show: Can't reach them"]:::warn
+  Q --> X2([END]):::finish
+  N --> R["Video, audio and chat flow directly"]:::direct
+  P --> R
+  R --> T["Someone hangs up"]:::process
+  T --> U["Server tells the other person"]:::ws
+  U --> X3([END]):::finish
+
+  classDef start fill:#1D63ED,stroke:#174FC0,stroke-width:2px,color:#FFFFFF
+  classDef finish fill:#DC2626,stroke:#B91C1C,stroke-width:2px,color:#FFFFFF
+  classDef process fill:#FFFFFF,stroke:#1D63ED,stroke-width:2px,color:#0F172A
+  classDef ws fill:#EFF6FF,stroke:#3B82F6,stroke-width:2px,color:#0F172A
+  classDef setup fill:#FFFBEB,stroke:#F59E0B,stroke-width:2px,color:#0F172A
+  classDef direct fill:#ECFDF5,stroke:#10B981,stroke-width:2px,color:#0F172A
+  classDef decision fill:#F5F3FF,stroke:#7C3AED,stroke-width:2px,color:#0F172A
+  classDef warn fill:#FEF2F2,stroke:#EF4444,stroke-width:2px,color:#0F172A
+  linkStyle default stroke:#5B6B86,stroke-width:2px,stroke-dasharray:9 5,stroke-dashoffset:980,animation:dash 25s linear infinite
+```
+
+---
+
+> [!IMPORTANT]
+> 🚫 **Video never goes through the WebSocket or the server.** Only the setup messages do.
+
 ## 👨‍💻 Creator
 
 **Vishal Kardam**, creator and developer of AI Interview Platform.
